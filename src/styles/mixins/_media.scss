@@ -1,0 +1,17 @@
+// Breakpoints
+$mobile-max: 49.9375rem; // 799px
+$tablet-min: 50rem; // 800px
+
+// Media Query Mixin
+@mixin media($query) {
+  @if $query ==tabletAndUp {
+    @media (min-width: #{$tablet-min}) {
+      @content;
+    }
+  }
+
+  // Podemos adicionar mais breakpoints no futuro:
+  // @if $query == desktopAndUp {
+  //   @media (min-width: 75rem) { @content; }
+  // }
+}

@@ -1,0 +1,175 @@
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include media(tabletAndUp) {
+    padding: 0 $container-padding;
+  }
+}
+
+.app {
+  min-height: 100vh;
+  background: $color-bg-primary;
+  position: relative;
+  overflow-x: hidden;
+
+  // Matrix rain effect
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 20% 80%, rgba($color-matrix-green, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba($color-matrix-green, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba($color-matrix-green, 0.01) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.main {
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
+  padding: $spacing-xl 0;
+  position: relative;
+  z-index: 1;
+
+  @include media(tabletAndUp) {
+    padding: $spacing-3xl 0;
+  }
+
+  &__content {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-bright;
+    margin: 0 0 $spacing-sm 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: $glow-lg;
+    line-height: $line-height-tight;
+
+    @include media(tabletAndUp) {
+      font-size: $font-size-3xl;
+      letter-spacing: 5px;
+    }
+
+    // Matrix-style cursor
+    &::after {
+      content: '█';
+      animation: cursor-blink 1.2s infinite;
+      margin-left: 4px;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-base;
+    color: $color-text-secondary;
+    margin: 0 0 $spacing-2xl 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: $line-height-normal;
+
+    @include media(tabletAndUp) {
+      font-size: $font-size-md;
+      margin: 0 0 $spacing-3xl 0;
+    }
+  }
+}
+
+.header {
+  height: $header-height;
+  background: rgba($color-bg-secondary, 0.9);
+  border-bottom: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: $z-header;
+  backdrop-filter: blur(10px);
+
+  &__brand {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: $glow-sm;
+
+    @include media(tabletAndUp) {
+      font-size: $font-size-xl;
+      letter-spacing: 3px;
+    }
+
+    &:hover {
+      color: $color-text-bright;
+      text-shadow: $glow-md;
+    }
+  }
+}
+
+.footer {
+  height: $footer-height;
+  background: rgba($color-bg-secondary, 0.9);
+  border-top: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  z-index: $z-header;
+  backdrop-filter: blur(10px);
+
+  @include media(tabletAndUp) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__text {
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    @include media(tabletAndUp) {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: $spacing-sm;
+    justify-content: space-between;
+
+    @include media(tabletAndUp) {
+      margin-top: $spacing-sm;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__link {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+
+    @include media(tabletAndUp) {
+      font-size: $font-size-sm;
+    }
+
+    &:hover {
+      color: $color-text-bright;
+      text-shadow: $glow-sm;
+    }
+  }
+}

@@ -1,8 +1,7 @@
-export interface EmailData {
+export interface MessageData {
   id: string;
   content: string;
-  fileName?: string;
-  uploadedAt: Date;
+  createdAt: Date;
 }
 
 export interface ClassificationResult {
@@ -10,6 +9,7 @@ export interface ClassificationResult {
   confidence: number;
   suggestedResponse: string;
   processingTime: number;
+  analyzedAt: Date;
 }
 
 export interface ApiResponse<T> {
@@ -19,9 +19,11 @@ export interface ApiResponse<T> {
   error?: string;
 }
 
-export interface UploadResponse {
-  fileId: string;
-  fileName: string;
-  size: number;
-  type: string;
+export interface FormState {
+  message: string;
+  isLoading: boolean;
+  error: string | null;
+  result: ClassificationResult | null;
 }
+
+export type FormStatus = 'idle' | 'loading' | 'success' | 'error';

@@ -1,0 +1,109 @@
+.btn {
+  display: inline-block;
+  padding: $button-padding;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: $button-border-width solid $color-border;
+  border-radius: $button-border-radius;
+  background: $color-bg-primary;
+  color: $color-text-primary;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  // Mobile first
+  min-width: 120px;
+
+  @include media(tabletAndUp) {
+    min-width: 180px;
+    padding: $spacing-md $spacing-2xl;
+  }
+
+  &:hover:not(:disabled) {
+    background: $color-bg-terminal;
+    color: $color-text-bright;
+    border-color: $color-border-bright;
+    text-shadow: $glow-sm;
+    box-shadow:
+      inset 0 0 10px rgba($color-matrix-green, 0.2),
+      0 0 10px rgba($color-matrix-green, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $color-border-bright;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: $color-text-muted;
+    border-color: $color-border-dim;
+
+    &:hover {
+      background: $color-bg-primary;
+      box-shadow: none;
+      text-shadow: none;
+    }
+  }
+
+  // Primary variant
+  &--primary {
+    background: rgba($color-matrix-green, 0.1);
+    border-color: $color-border-bright;
+    color: $color-text-bright;
+    text-shadow: $glow-sm;
+
+    &:hover:not(:disabled) {
+      background: rgba($color-matrix-green, 0.2);
+      box-shadow:
+        inset 0 0 20px rgba($color-matrix-green, 0.3),
+        0 0 20px rgba($color-matrix-green, 0.4);
+    }
+  }
+
+  // Loading state
+  &--loading {
+    position: relative;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      border: 2px solid transparent;
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: btn-spinner 0.8s linear infinite;
+    }
+
+    .btn__text {
+      opacity: 0.3;
+    }
+  }
+}
+
+// Button spinner animation
+@keyframes btn-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

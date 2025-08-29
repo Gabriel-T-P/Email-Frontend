@@ -1,0 +1,82 @@
+// Colors
+$color-bg-primary: #000000;
+$color-bg-secondary: #0A0A0A;
+$color-bg-terminal: #001100;
+$color-bg-card: rgba(0, 20, 0, 0.8);
+
+$color-matrix-green: #00FF41;
+$color-matrix-bright: #39FF14;
+$color-matrix-dark: #00AA00;
+$color-matrix-dim: #008F11;
+
+$color-text-primary: #00FF41;
+$color-text-secondary: #00CC33;
+$color-text-muted: #00AA00;
+$color-text-bright: #39FF14;
+$color-text-cursor: #00FF41;
+
+$color-border: #00CC33;
+$color-border-bright: #00FF41;
+$color-border-dim: #008F11;
+
+// Glow effects
+$glow-sm: 0 0 5px currentColor;
+$glow-md: 0 0 10px currentColor, 0 0 20px currentColor;
+$glow-lg: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px currentColor;
+
+// Typography - Monospace Terminal
+$font-family-primary: 'Courier New', 'Lucida Console', Monaco, monospace;
+$font-family-mono: 'Courier New', 'Lucida Console', Monaco, monospace;
+
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px  
+$font-size-base: 1rem; // 16px
+$font-size-md: 1.125rem; // 18px
+$font-size-lg: 1.25rem; // 20px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 2rem; // 32px
+$font-size-3xl: 2.5rem; // 40px
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.6;
+
+// Spacing
+$spacing-xs: 0.25rem; // 4px
+$spacing-sm: 0.5rem; // 8px
+$spacing-md: 1rem; // 16px
+$spacing-lg: 1.5rem; // 24px
+$spacing-xl: 2rem; // 32px
+$spacing-2xl: 3rem; // 48px
+$spacing-3xl: 4rem; // 64px
+
+// Layout
+$container-max-width: 900px;
+$container-padding: $spacing-lg;
+
+$header-height: 60px;
+$footer-height: 50px;
+
+// Form Elements - Terminal Style
+$input-padding: $spacing-md;
+$input-border-width: 1px;
+$input-border-radius: 4px;
+$textarea-min-height: 200px;
+
+$button-padding: $spacing-sm $spacing-xl;
+$button-border-width: 1px;
+$button-border-radius: 4px;
+
+// Terminal Effects
+$scan-line-height: 2px;
+$cursor-blink-speed: 1s;
+$typing-speed: 0.05s;
+
+// Z-index
+$z-scan-lines: 1;
+$z-header: 100;
+$z-modal: 1000;
+$z-tooltip: 1001;
