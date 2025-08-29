@@ -28,11 +28,13 @@ Aplicação React + TypeScript para classificação automática de emails utiliz
 - `npm run type-check` - Verificar tipos TypeScript
 
 ## 📁 Estrutura do Projeto
+```
 src/
-├── components/     # Componentes React
+├── components/    # Componentes React
 ├── pages/         # Páginas da aplicação
 ├── services/      # APIs e serviços
 ├── types/         # Tipos TypeScript
 ├── utils/         # Funções utilitárias
 ├── hooks/         # Custom hooks
 └── styles/        # Estilos Sass com BEM
+```
