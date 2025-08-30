@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import type { FormState, FormStatus } from '@/types';
+import { useState } from 'react';
+import type { FormState, FormStatus, ClassifyResponse } from '@/types';
+import { classifyText } from '@/services/api';
+import { formatClassificationResult, validateMessageContent } from '@/utils/classification';
 
-interface MessageFormProps {
-  onSubmit: (message: string) => Promise<void>;
-}
-
-export const MessageForm = ({ onSubmit }: MessageFormProps) => {
+export const MessageForm = () => {
   const [formState, setFormState] = useState<FormState>({
     message: '',
+    file: null,
     isLoading: false,
     error: null,
     result: null
@@ -18,31 +17,52 @@ export const MessageForm = ({ onSubmit }: MessageFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formState.message.trim()) {
-      setFormState(prev => ({ ...prev, error: 'ERRO: Mensagem requerida para análise.' }));
+    // Usar validação da utils
+    const validationError = validateMessageContent(formState.message);
+    if (validationError) {
+      setFormState(prev => ({ ...prev, error: validationError }));
       return;
     }
 
-    setFormState(prev => ({ ...prev, isLoading: true, error: null }));
+    setFormState(prev => ({ ...prev, isLoading: true, error: null, result: null }));
     setStatus('loading');
 
     try {
-      await onSubmit(formState.message);
+      // Chamar API
+      const response: ClassifyResponse = await classifyText(formState.message);
+
+      // Salvar resultado
+      setFormState(prev => ({
+        ...prev,
+        result: response.data,
+        isLoading: false
+      }));
       setStatus('success');
+
     } catch (error) {
       setStatus('error');
       setFormState(prev => ({
         ...prev,
+        isLoading: false,
         error: error instanceof Error ? `ERRO: ${error.message}` : 'ERRO: Falha na análise do sistema'
       }));
-    } finally {
-      setFormState(prev => ({ ...prev, isLoading: false }));
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFormState(prev => ({ ...prev, message: e.target.value, error: null }));
     if (status !== 'idle') setStatus('idle');
+  };
+
+  const handleNewAnalysis = () => {
+    setFormState({
+      message: '',
+      file: null,
+      isLoading: false,
+      error: null,
+      result: null
+    });
+    setStatus('idle');
   };
 
   const getFormClassName = () => {
@@ -52,6 +72,62 @@ export const MessageForm = ({ onSubmit }: MessageFormProps) => {
     if (status === 'error') className += ' message-form--error';
     return className;
   };
+
+  if (formState.result) {
+    const formatted = formatClassificationResult(formState.result);
+
+    return (
+      <div className={getFormClassName()}>
+        <div className="message-form__header">
+          <h2 className="message-form__title">Análise Completa</h2>
+          <p className="message-form__description">
+            &gt; Processamento neural finalizado_
+          </p>
+        </div>
+
+        <div className="message-form__results">
+          <div className="result-card">
+            <div className="result-card__header">
+              <h3 className="result-card__category">
+                &gt; CATEGORIA: {formatted.categoryLabel.toUpperCase()}
+              </h3>
+              <div className="result-card__confidence">
+                Confiança: {formatted.confidence}% ({formatted.confidenceLabel})
+              </div>
+            </div>
+
+            <div className="result-card__content">
+              <div className="result-card__response">
+                <h4>&gt; Resposta Sugerida:</h4>
+                <p>{formatted.suggestedResponse}</p>
+              </div>
+
+              <div className="result-card__stats">
+                <div className="stat">
+                  <span className="stat__label">&gt; Palavras:</span>
+                  <span className="stat__value">{formatted.wordCount}</span>
+                </div>
+                <div className="stat">
+                  <span className="stat__label">&gt; Tempo:</span>
+                  <span className="stat__value">{formatted.processingTime}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="result-card__actions">
+              <button
+                type="button"
+                className="btn btn--primary"
+                onClick={handleNewAnalysis}
+              >
+                &gt; Nova Análise
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form className={getFormClassName()} onSubmit={handleSubmit}>
@@ -70,7 +146,7 @@ export const MessageForm = ({ onSubmit }: MessageFormProps) => {
           id="message"
           name="message"
           className="message-form__textarea"
-          placeholder="> Digite ou cole seu e-mail aqui...
+          placeholder="> Digite ou cole sua mensagem aqui...
 > Sistema aguardando entrada de dados_"
           value={formState.message}
           onChange={handleInputChange}
