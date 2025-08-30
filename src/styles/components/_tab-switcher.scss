@@ -1,0 +1,56 @@
+.tab-switcher {
+  display: flex;
+  margin-bottom: $spacing-xl;
+  border-bottom: 1px solid $color-border;
+
+  &__tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: $spacing-md $spacing-lg;
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+
+    @include media(tabletAndUp) {
+      font-size: $font-size-base;
+      padding: $spacing-lg $spacing-xl;
+    }
+
+    &:hover:not(:disabled) {
+      color: $color-text-secondary;
+      background: rgba($color-matrix-green, 0.05);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    &--active {
+      color: $color-text-bright;
+      text-shadow: $glow-sm;
+      background: rgba($color-matrix-green, 0.1);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: $color-border-bright;
+        box-shadow: 0 0 5px $color-matrix-green;
+      }
+
+      &:hover {
+        background: rgba($color-matrix-green, 0.15);
+      }
+    }
+  }
+}

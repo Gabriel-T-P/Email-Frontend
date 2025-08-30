@@ -1,23 +1,22 @@
 import { useMessageForm } from '@/hooks/useMessageForm';
 import { TextForm } from './TextForm';
+import { FileUpload } from './FileUpload';
 import { ResultDisplay } from './ResultDisplay';
-// import { FileUpload } from './FileUpload'; // Para o futuro
-// import { TabSwitcher } from './TabSwitcher'; // Para o futuro
+import { TabSwitcher } from './TabSwitcher';
 
 export const MessageForm = () => {
   const {
     formState,
-    status,
     activeTab,
     handleTextSubmit,
-    // handleFileSubmit,
+    handleFileSubmit,
     resetForm,
     updateMessage,
-    // updateFile,
+    updateFile,
+    changeTab,
     getFormClassName,
     hasResult,
     isLoading,
-    hasError,
   } = useMessageForm();
 
   // Se tem resultado, mostrar tela de resultado
@@ -31,19 +30,34 @@ export const MessageForm = () => {
     );
   }
 
-  // Por enquanto, apenas formulário de texto
-  // No futuro, aqui teremos:
-  // - TabSwitcher para alternar entre texto/arquivo
-  // - Condicional para mostrar TextForm ou FileUpload baseado em activeTab
-
+  // Formulário com tabs
   return (
-    <TextForm
-      message={formState.message}
-      isLoading={isLoading}
-      error={formState.error}
-      onMessageChange={updateMessage}
-      onSubmit={handleTextSubmit}
-      className={getFormClassName()}
-    />
+    <div className="message-form-container">
+      <TabSwitcher
+        activeTab={activeTab}
+        onTabChange={changeTab}
+        disabled={isLoading}
+      />
+
+      {activeTab === 'text' ? (
+        <TextForm
+          message={formState.message}
+          isLoading={isLoading}
+          error={formState.error}
+          onMessageChange={updateMessage}
+          onSubmit={handleTextSubmit}
+          className={getFormClassName()}
+        />
+      ) : (
+        <FileUpload
+          file={formState.file}
+          isLoading={isLoading}
+          error={formState.error}
+          onFileChange={updateFile}
+          onSubmit={handleFileSubmit}
+          className={getFormClassName()}
+        />
+      )}
+    </div>
   );
 };

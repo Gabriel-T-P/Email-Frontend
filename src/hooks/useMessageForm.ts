@@ -63,7 +63,7 @@ export const useMessageForm = () => {
     }
   };
 
-  // Tratamento de erro
+  // Tratamento de erro centralizado
   const handleError = (error: unknown) => {
     setStatus('error');
     setFormState(prev => ({
@@ -97,6 +97,12 @@ export const useMessageForm = () => {
     if (status !== 'idle') setStatus('idle');
   };
 
+  // Change tab and clear errors
+  const changeTab = (tab: InputType) => {
+    setActiveTab(tab);
+    setFormState(prev => ({ ...prev, error: null }));
+  };
+
   // Clear error
   const clearError = () => {
     setFormState(prev => ({ ...prev, error: null }));
@@ -124,7 +130,7 @@ export const useMessageForm = () => {
     updateMessage,
     updateFile,
     clearError,
-    setActiveTab,
+    changeTab,
 
     // Computed
     getFormClassName,
