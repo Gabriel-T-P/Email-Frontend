@@ -119,7 +119,6 @@ export const FileUpload = ({
 
           {!file ? (
             <>
-              <div className="file-upload__icon">📁</div>
               <div className="file-upload__text">
                 &gt; Arraste arquivo aqui
               </div>
@@ -176,9 +175,8 @@ export const FileUpload = ({
 
       <div className="message-form__info">
         <p className="message-form__info-text">
-          &gt; Sistema neural ativo<br />
-          &gt; Extração de texto: automática<br />
-          &gt; Classificação: produtivo | improdutivo
+          &gt; Classificação: produtivo | improdutivo<br />
+          &gt; Extração de texto: automática
         </p>
       </div>
     </form>

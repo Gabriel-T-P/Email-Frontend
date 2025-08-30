@@ -28,7 +28,7 @@ export const TextForm = ({
   return (
     <form className={className} onSubmit={handleSubmit}>
       <div className="message-form__header">
-        <h2 className="message-form__title">Sistema de Análise</h2>
+        <h2 className="message-form__title">Análise de Texto</h2>
         <p className="message-form__description">
           &gt; Insira dados para processamento neural_
         </p>
@@ -71,7 +71,6 @@ export const TextForm = ({
 
       <div className="message-form__info">
         <p className="message-form__info-text">
-          &gt; Sistema neural ativo<br />
           &gt; Classificação: produtivo | improdutivo<br />
           &gt; Resposta automática: habilitada
         </p>

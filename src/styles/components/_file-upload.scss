@@ -53,17 +53,6 @@
     display: none;
   }
 
-  &__icon {
-    font-size: 3rem;
-    color: $color-text-secondary;
-    margin-bottom: $spacing-md;
-    transition: all 0.3s ease;
-
-    @include media(tabletAndUp) {
-      font-size: 4rem;
-    }
-  }
-
   &__text {
     font-size: $font-size-base;
     color: $color-text-bright;

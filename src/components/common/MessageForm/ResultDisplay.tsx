@@ -14,9 +14,6 @@ export const ResultDisplay = ({ result, onNewAnalysis, className }: ResultDispla
     <div className={className}>
       <div className="message-form__header">
         <h2 className="message-form__title">Análise Completa</h2>
-        <p className="message-form__description">
-          &gt; Processamento neural finalizado_
-        </p>
       </div>
 
       <div className="message-form__results">
@@ -25,9 +22,6 @@ export const ResultDisplay = ({ result, onNewAnalysis, className }: ResultDispla
             <h3 className="result-card__category">
               &gt; CATEGORIA: {formatted.categoryLabel.toUpperCase()}
             </h3>
-            <div className="result-card__confidence">
-              Confiança: {formatted.confidence}% ({formatted.confidenceLabel})
-            </div>
           </div>
 
           <div className="result-card__content">
@@ -38,8 +32,8 @@ export const ResultDisplay = ({ result, onNewAnalysis, className }: ResultDispla
 
             <div className="result-card__stats">
               <div className="stat">
-                <span className="stat__label">&gt; Palavras:</span>
-                <span className="stat__value">{formatted.wordCount}</span>
+                <span className="stat__label">&gt; Confiança:</span>
+                <span className="stat__value">{formatted.confidence}%</span>
               </div>
               <div className="stat">
                 <span className="stat__label">&gt; Tempo:</span>
