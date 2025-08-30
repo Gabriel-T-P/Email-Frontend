@@ -1,6 +1,7 @@
 import type { ClassifyResponse } from '@/types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1/';
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 class ApiError extends Error {
   constructor(message: string, public status?: number) {
@@ -12,10 +13,11 @@ class ApiError extends Error {
 // Classificar texto direto
 export const classifyText = async (text: string): Promise<ClassifyResponse> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/classify-text`, {
+    const response = await fetch(`${API_BASE_URL}text`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-API-KEY': API_KEY,
       },
       body: JSON.stringify({ text }),
     });
@@ -64,8 +66,11 @@ export const classifyFile = async (file: File): Promise<ClassifyResponse> => {
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await fetch(`${API_BASE_URL}/api/classify-file`, {
+    const response = await fetch(`${API_BASE_URL}file`, {
       method: 'POST',
+      headers: {
+        'X-API-KEY': API_KEY,
+      },
       body: formData, // Não definir Content-Type para FormData
     });
 

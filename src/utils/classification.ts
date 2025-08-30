@@ -49,8 +49,8 @@ export const validateMessageContent = (content: string): string | null => {
     return 'ERRO: Conteúdo vazio detectado';
   }
 
-  if (trimmed.length < 5) {
-    return 'ERRO: Mensagem muito curta (mín: 5 caracteres)';
+  if (trimmed.length < 10) {
+    return 'ERRO: Mensagem muito curta (mín: 10 caracteres)';
   }
 
   if (trimmed.length > 5000) {

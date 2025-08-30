@@ -32,7 +32,7 @@ export const ResultDisplay = ({ result, onNewAnalysis, className }: ResultDispla
 
           <div className="result-card__content">
             <div className="result-card__response">
-              <h4>&gt; Resposta Sugerida:</h4>
+              <h4>&gt; Resposta:</h4>
               <p>{formatted.suggestedResponse}</p>
             </div>
 

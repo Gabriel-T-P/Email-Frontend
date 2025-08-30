@@ -13,6 +13,7 @@
   background: $color-bg-primary;
   position: relative;
   overflow-x: hidden;
+  width: 100%;
 
   // Matrix rain effect
   &::before {

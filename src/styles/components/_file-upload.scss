@@ -7,7 +7,6 @@
     background: rgba($color-bg-terminal, 0.3);
     transition: all 0.3s ease;
     cursor: pointer;
-    position: relative;
     min-height: 200px;
     display: flex;
     flex-direction: column;
@@ -164,30 +163,5 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
-  }
-}
-
-// Bounce animation para drag active
-@keyframes bounce {
-
-  0%,
-  20%,
-  53%,
-  80%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  40%,
-  43% {
-    transform: translate3d(0, -20px, 0);
-  }
-
-  70% {
-    transform: translate3d(0, -10px, 0);
-  }
-
-  90% {
-    transform: translate3d(0, -2px, 0);
   }
 }
