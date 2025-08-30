@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface TextFormProps {
   message: string;
   isLoading: boolean;
