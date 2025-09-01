@@ -73,12 +73,9 @@ src/
 
 ### Tela inicial
 
-![Preview da tela inicial](./docs/screenshots/home.png)
+<img width="681" height="857" alt="image" src="https://github.com/user-attachments/assets/15ce0368-af64-47df-aaad-80eeddbd291e" />
+<img width="720" height="836" alt="image" src="https://github.com/user-attachments/assets/eb483533-4299-4435-9ba3-5d3e3fe83b1e" />
 
 ### Exemplo de classificação
 
-![Exemplo de classificação de
-email](./docs/screenshots/classification.png)
-
-> As imagens acima são exemplos. Coloque prints reais em
-> `docs/screenshots/`.
+<img width="915" height="761" alt="image" src="https://github.com/user-attachments/assets/ff259f52-8f30-4427-b89b-cce14bab27bc" />
